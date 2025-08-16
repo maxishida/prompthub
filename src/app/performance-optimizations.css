@@ -1,0 +1,186 @@
+/* Performance Optimizations for Cyberpunk Theme */
+/* This file contains optimized CSS to reduce reflow and improve performance */
+
+/* Optimized utilities - removed @layer to fix Tailwind conflict */
+  /* Optimized animations with will-change and transform3d */
+  .optimized-pulse {
+    animation: optimized-pulse 2s ease-in-out infinite alternate;
+    will-change: opacity;
+  }
+  
+  @keyframes optimized-pulse {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+  }
+  
+  /* Use transform3d for hardware acceleration */
+  .optimized-float {
+    animation: optimized-float 3s ease-in-out infinite;
+    will-change: transform;
+  }
+  
+  @keyframes optimized-float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -8px, 0); }
+  }
+  
+  /* Optimized glow effects using box-shadow instead of filter */
+  .optimized-glow {
+    box-shadow: 0 0 8px hsl(var(--neon-green));
+    transition: box-shadow 0.3s ease;
+    will-change: box-shadow;
+  }
+  
+  .optimized-glow:hover {
+    box-shadow: 0 0 16px hsl(var(--neon-green));
+  }
+  
+  /* Reduce animation complexity for better performance */
+  .simple-border-glow {
+    border: 1px solid hsl(var(--primary));
+    transition: border-color 0.3s ease;
+  }
+  
+  .simple-border-glow:hover {
+    border-color: hsl(var(--neon-cyan));
+  }
+  
+  /* Optimized scroll behavior */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent layout thrashing */
+  .no-layout-shift {
+    contain: layout style paint;
+  }
+  
+  /* Optimized particle background - static version */
+  .static-particles {
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--neon-cyan)), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--neon-green)), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--neon-magenta)), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .optimized-pulse,
+    .optimized-float,
+    .neon-pulse,
+    .pulse-glow,
+    .animated-border,
+    .hologram-enhanced {
+      animation: none;
+    }
+    
+    .cyberpunk-btn:hover {
+      transform: none;
+    }
+    
+    .fade-in,
+    .fade-in-up,
+    .fade-in-left {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  /* Performance-focused utility classes */
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  .contain-paint {
+    contain: paint;
+  }
+  
+  .contain-layout {
+    contain: layout;
+  }
+  
+  .contain-strict {
+    contain: strict;
+  }
+  
+  /* Optimized text rendering */
+  .optimized-text {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Reduce repaints on hover */
+  .efficient-hover {
+    transition: opacity 0.2s ease;
+  }
+  
+  .efficient-hover:hover {
+    opacity: 0.8;
+  }
+  
+  /* Optimized grid without expensive animations */
+  .static-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 25px 25px;
+  }
+  
+  /* Performance monitoring helper */
+  .performance-monitor {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: hsl(var(--neon-green));
+    padding: 8px;
+    font-family: monospace;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+/* Critical CSS optimizations - removed @layer to fix Tailwind conflict */
+  /* Optimize body for better performance */
+  body {
+    /* Use static background instead of animated particles */
+    background: 
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--neon-cyan)), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--neon-green)), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--neon-magenta)), transparent),
+      hsl(var(--background));
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    background-attachment: fixed;
+  }
+  
+  /* Remove expensive body::before animation */
+  body::before {
+    display: none;
+  }
+  
+  /* Optimize scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent horizontal scroll issues */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Optimize images and media */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }

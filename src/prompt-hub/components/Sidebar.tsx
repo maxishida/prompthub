@@ -2,7 +2,10 @@ import { useMemo } from 'react'
 import { usePrompts } from '../store/usePrompts'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Zap, ExternalLink } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 import type { Filters } from '../types'
 const categories: Array<{ key: Filters['category']; label: string; color: string }> = [
@@ -13,6 +16,7 @@ const categories: Array<{ key: Filters['category']; label: string; color: string
   { key: 'Fotos', label: 'Fotos', color: 'from-green-400 to-lime-400' },
   { key: 'Tarefas', label: 'Tarefas', color: 'from-teal-400 to-green-400' },
   { key: 'Outros', label: 'Outros', color: 'from-cyan-400 to-emerald-400' },
+  { key: 'Workflow N8n', label: 'Workflow N8n', color: 'from-cyan-400 to-blue-400' },
 ]
 
 export function Sidebar() {
@@ -55,6 +59,26 @@ export function Sidebar() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Seção especial para Workflows N8n */}
+      <div className="mt-6 p-4 bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-lg border border-cyan-500/30">
+        <div className="flex items-center gap-2 mb-3">
+          <Zap className="w-5 h-5 text-cyan-400" />
+          <h3 className="text-sm font-semibold text-cyan-400 font-orbitron">Biblioteca N8n</h3>
+        </div>
+        <p className="text-xs text-cyan-300/80 mb-3 font-rajdhani">
+          Mais de 2.000 workflows prontos para automação
+        </p>
+        <Link href="/n8n-workflows">
+          <Button 
+            size="sm" 
+            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white border-0 font-rajdhani"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            Explorar Workflows
+          </Button>
+        </Link>
       </div>
 
       <div className="mt-6">
